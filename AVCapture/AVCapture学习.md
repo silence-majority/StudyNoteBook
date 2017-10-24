@@ -105,11 +105,39 @@ AVAuthorizationStatus
 
 > AVCaptureDeviceInput is a concrete subclass of AVCaptureInput that provides an interface for capturing media from an AVCaptureDevice  
 AVCaptureDeviceInput 为 AVCaptureDevice捕获的数据提供一个接口，  
-继承自AVCaptureInput。类似的子类还有AVCaptureScreenInput、AVCaptureMetadataInput。
- 
-## 1.4 AVCaptureOutput(子类)  
-## 1.5 AVCaptureConnection
-## 1.6 AVCaptureInputPort 
+继承自AVCaptureInput。类似的子类还有AVCaptureScreenInput、AVCaptureMetadataInput。  
+
+### 1.3.1 AVCaptureInput  
+AVCaptureInput只有一个属性：ports，AVCaptureInputPort类型的数组;  
+
+### 1.3.2 AVCaptureDeviceInput  
+继承自AVCaptureInput，增加了AVCaptureDevie属性，一个工厂方法和一个初始化方法。
+## 1.4 AVCaptureOutput(子类)。
+```
+#import <AVFoundation/AVCaptureAudioDataOutput.h>
+#import <AVFoundation/AVCaptureAudioPreviewOutput.h>
+#import <AVFoundation/AVCaptureDepthDataOutput.h>
+#import <AVFoundation/AVCaptureFileOutput.h>
+#import <AVFoundation/AVCaptureMetadataOutput.h>
+#import <AVFoundation/AVCapturePhotoOutput.h>
+#import <AVFoundation/AVCaptureStillImageOutput.h>
+#import <AVFoundation/AVCaptureVideoDataOutput.h>
+```  
+>    AVCaptureOutput provides an abstract interface for connecting capture output destinations, such as files and video previews, to an AVCaptureSession.  
+
+>  An AVCaptureOutput can have multiple connections represented by AVCaptureConnection objects, one for each stream of media that it receives from an AVCaptureInput. An AVCaptureOutput does not have any connections when it is first created. When an output is added to an AVCaptureSession, connections are created that map media data from that session's inputs to its outputs.  
+一个 AVCaptureOutput拥有多个AVCaptureConnection对象，每一个AVCaptureConnection对象对应一个数据流。  
+
+## 1.5 AVCaptureConnection  
+>  AVCaptureInputs have one or more AVCaptureInputPorts. AVCaptureOutputs can accept data from one or more sources (example - an AVCaptureMovieFileOutput accepts both video and audio data). AVCaptureVideoPreviewLayers can accept data from one AVCaptureInputPort whose mediaType is AVMediaTypeVideo. When an input or output is added to a session, or a video preview layer is associated with a session, the session greedily forms connections between all the compatible AVCaptureInputs' ports and AVCaptureOutputs or AVCaptureVideoPreviewLayers. Iterating through an output's connections or a video preview layer's sole connection, a client may enable or disable the flow of data from a given input to a given output or preview layer.  
+
+>   AVCaptureInputs拥有一个或多个AVCaptureInputPorts。AVCaptureOutputs能从一个或多个资源中接受数据。（比如，AVCaptureMovieFileOutput既可以接受视频数据，也可以接收音频数据）AVCaptureVideoPreviewLayers可以接收来自mediaType为AVMediaTypeVideo的AVCaptureInputPort的数据。当输入输出加入到会话中，或者视频预览图层与会话联系起来，会话会连续的在所有合适的输入口和输出或者视频预览图层之间建立连接。
+
+
+## 1.6 AVCaptureInputPort   
+>  An AVCaptureInputPort describes a single stream of media data provided by an AVCaptureInput and provides an interface for connecting that stream to AVCaptureOutput instances via AVCaptureConnection.    
+
+>由AVCaptureInput提供的一个单一的媒体数据流，由AVCaptureInputPort提供接口将该数据流与AVCaptureOutput实例连接起来，通过AVCaptureConnection。
  
  
 # 2. ImageOrientation
