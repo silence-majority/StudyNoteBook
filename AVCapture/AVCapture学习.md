@@ -128,6 +128,9 @@ AVCaptureInput只有一个属性：ports，AVCaptureInputPort类型的数组;
 >  An AVCaptureOutput can have multiple connections represented by AVCaptureConnection objects, one for each stream of media that it receives from an AVCaptureInput. An AVCaptureOutput does not have any connections when it is first created. When an output is added to an AVCaptureSession, connections are created that map media data from that session's inputs to its outputs.  
 一个 AVCaptureOutput拥有多个AVCaptureConnection对象，每一个AVCaptureConnection对象对应一个数据流。  
 
+### 1.4.1 AVCaptureStillImageOutput
+AVCaptureOutput
+
 ## 1.5 AVCaptureConnection  
 >  AVCaptureInputs have one or more AVCaptureInputPorts. AVCaptureOutputs can accept data from one or more sources (example - an AVCaptureMovieFileOutput accepts both video and audio data). AVCaptureVideoPreviewLayers can accept data from one AVCaptureInputPort whose mediaType is AVMediaTypeVideo. When an input or output is added to a session, or a video preview layer is associated with a session, the session greedily forms connections between all the compatible AVCaptureInputs' ports and AVCaptureOutputs or AVCaptureVideoPreviewLayers. Iterating through an output's connections or a video preview layer's sole connection, a client may enable or disable the flow of data from a given input to a given output or preview layer.  
 
